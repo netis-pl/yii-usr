@@ -18,6 +18,11 @@ class HybridauthController extends UsrController
      */
     protected function afterLogin()
     {
+        if (is_array(Yii::app()->user->returnUrl)) {
+            $this->redirect(Yii::app()->user->returnUrl);
+            return;
+        }
+
         $returnUrlParts = explode('/',Yii::app()->user->returnUrl);
         if(end($returnUrlParts)=='index.php'){
             $url = '/';

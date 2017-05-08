@@ -786,11 +786,16 @@ abstract class BaseFacebook
 
     $response_params = array();
     parse_str($access_token_response, $response_params);
-    if (!isset($response_params['access_token'])) {
-      return false;
+    if (isset($response_params['access_token'])) {
+      return $response_params['access_token'];
     }
 
-    return $response_params['access_token'];
+    $response_params = json_decode($access_token_response, true);
+    if (isset($response_params['access_token'])) {
+        return $response_params['access_token'];
+    }
+
+    return false;
   }
 
   /**

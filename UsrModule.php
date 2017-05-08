@@ -286,8 +286,8 @@ class UsrModule extends CWebModule
             $hybridauthConfig = array(
                 'base_url' => Yii::app()->createAbsoluteUrl('/'.$this->id.'/hybridauth/callback'),
                 'providers' => $this->hybridauthProviders,
-                //'debug_mode' => YII_DEBUG,
-                //'debug_file' => Yii::app()->runtimePath . '/hybridauth.log',
+                'debug_mode' => YII_DEBUG,
+                'debug_file' => Yii::app()->runtimePath . '/hybridauth.log',
             );
             require dirname(__FILE__) . '/extensions/Hybrid/Auth.php';
             $this->_hybridauth = new Hybrid_Auth($hybridauthConfig);
